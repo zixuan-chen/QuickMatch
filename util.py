@@ -1,13 +1,19 @@
-import numpy as np 
+import numpy as np
 
-def euclideanDistMatrix(A, B):
-    # A: [NA, p] B: [NB, p]
-	# return [NA, NB]
-	NA = A.shape[0]
-	NB = B.shape[0]
-	A_square = np.sum(np.power(A,2), axis=1, keepdims=True)
-	B_square = np.sum(np.power(B,2), axis=1, keepdims=True)
-	dsq = np.dot(A_square, np.ones((1, NB))) +\
-		  np.dot(np.ones((NA, 1)), B_square.T) - 2*np.dot(A, B.T)
-    return dsq
-    
+
+def euclidean_dist_matrix(a, b):
+	"""
+	compute Euclidean Distance Matrix
+	:param a: [n1, p]
+	:param b: [n2, p]
+	:return: dsq [n1, n2]
+	"""
+	n1 = a.shape[0]
+	n2 = b.shape[0]
+	a_square = np.sum(np.power(a, 2), axis=1, keepdims=True)
+	b_square = np.sum(np.power(b, 2), axis=1, keepdims=True)
+	dsq = np.dot(a_square, np.ones((1, n2))) +\
+		np.dot(np.ones((n1, 1)), b_square.T) - 2*np.dot(a, b.T)
+
+	return np.sqrt(dsq)
+
