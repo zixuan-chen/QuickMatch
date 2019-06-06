@@ -46,7 +46,7 @@ def visualize():
         for idx in c:
             i = idx // n
             x, y = kp[idx][0], kp[idx][1]
-            cv2.circle(imgs[i], (x, y), 2, (0, 255, 255), 3)
+            cv2.circle(imgs[i], (x, y), 8, (0, 255, 255), 6)
 
         for i in range(6):
             cv2.imshow("imgs[%d]" % (i + 1), imgs[i])
@@ -54,8 +54,8 @@ def visualize():
 
 
 print(get_ground_truth(6, 13))
-data_path = "C:\\Users\\ChenZixuan\\Documents\\Graffiti_dataset"
-categroy = 'wall'
+data_path = "C:\\Users\\ChenZixuan\\OneDrive\\Document\\Research\\Graph_Matching\\Graffiti_dataset"
+categroy = 'graf'
 size = get_size(data_path + "\\size")
 row, col = size[categroy]
 
@@ -73,4 +73,4 @@ clusters = quickmatch_cluster(data, n, kernel=np.exp, flag_low_memory=False)
 ground_truth = get_ground_truth(m, n)
 correct_rate = eval(clusters, ground_truth)
 print("ground_truth_num=%d, accuracy:%.4f" % (n, correct_rate))
-
+visualize()
